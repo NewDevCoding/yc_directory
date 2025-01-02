@@ -14,6 +14,15 @@ pnpm dev
 bun dev
 ```
 
+#NOTE: Built using next@canary so has issues whenever canary updates appear. To combat this, when there is a server errpr related to next canary,
+run:
+
+```bash
+npm install next@canary
+# then
+npm run dev
+```
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
