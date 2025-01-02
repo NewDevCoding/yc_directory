@@ -4,9 +4,11 @@ import { STARTUP_BY_ID_QUERY } from '@/sanity/lib/queries';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import React from 'react'
+import React, { Suspense } from 'react'
 
 import markdownit from 'markdown-it'
+import { Skeleton } from '@/components/ui/skeleton';
+import View from '@/components/View';
 
 const md = markdownit()
 
@@ -41,8 +43,8 @@ const page = async ({ params }: { params: Promise<{id: string}>}) => {
             <div className='space-y-5 mt-10 max-w-4xl mx-auto'>
                 <div className='flex-between gap-5'>
                     <Link href={`/user/${post.author?.id}`} className='flex gap-2 items-center mb-3'>
-                    <Image
-                        src={post.author?.image}
+                    <img
+                        src={post.author.image}
                         alt="avatar"
                         width={64}
                         height={64}
@@ -66,7 +68,23 @@ const page = async ({ params }: { params: Promise<{id: string}>}) => {
                 </div>
 
                 <h3 className='text-30-bold'>Pitch Details</h3>
+            
+                {parsedContent ? (
+                    <article 
+                    className='prose max-w-4xl font-work-sans break-all'
+                        dangerouslySetInnerHTML={{ __html: parsedContent}}                    /> 
+                ) : (
+                    <p className='no-result'>No Details Provided</p>
+                )}
+            
             </div>
+            <hr className='divider' />
+            {/* TODO: editor picks */}
+
+            <Suspense fallback={<Skeleton className='view-skeleton' />} >
+                <View id={id} />
+            </Suspense>
+
         </section>
     </>
   )
