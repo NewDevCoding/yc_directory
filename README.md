@@ -14,7 +14,7 @@ pnpm dev
 bun dev
 ```
 
-#NOTE: Built using next@canary so has issues whenever canary updates appear. To combat this, when there is a server err0r related to next canary,
+#NOTE: Built using next@canary so has issues whenever canary updates appear. To combat this, when there is a server error related to next canary,
 run:
 
 ```bash
