@@ -118,27 +118,33 @@ const StartupForm = () => {
         </div>
 
         <div>
-            <label htmlFor="category" className="startup-form_label">Category</label>
-            <Input 
-                className='startup-form_input'
+            <label htmlFor="category" className="startup-form_label">
+                Category
+            </label>
+            <Input
+                id="category"
+                name="category"
+                className="startup-form_input"
                 required
-                placeholder='Startup Category (Health, Tech, Hobbies, Gaming)'
+                placeholder="Startup Category (Tech, Health, Education...)"
             />
 
-            {errors.category && <p className='startup-form_error'>{errors.category}</p>}
+            {errors.category && (<p className="startup-form_error">{errors.category}</p>)}
         </div>
 
         <div>
-            <label htmlFor="link" className="startup-form_label">Label</label>
-            <Input 
-                id='link'
-                name='link'
-                className='startup-form_input'
+            <label htmlFor="link" className="startup-form_label">
+                Image URL
+             </label>
+            <Input
+                id="link"
+                name="link"
+                className="startup-form_input"
                 required
-                placeholder='Startup Image URL'
+                placeholder="Startup Image URL"
             />
 
-            {errors.link && <p className='startup-form_error'>{errors.link}</p>}
+            {errors.link && <p className="startup-form_error">{errors.link}</p>}
         </div>
 
         <div data-color-mode="white">
