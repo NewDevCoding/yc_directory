@@ -11,6 +11,7 @@ import * as z from 'zod';
 import { set } from 'sanity';
 import { useToast } from '@/hooks/use-toast';
 import { useRouter } from 'next/navigation';
+import { createPitch } from '@/lib/actions';
 
 const StartupForm = () => {
 
@@ -34,23 +35,19 @@ const StartupForm = () => {
 
             await formSchema.parseAsync(formValues)
 
-            console.log(formValues)
+            const result = await createPitch(prevState, formData, pitch)
 
-            // const result = await createDiffieHellman(prevState, formData, pitch)
-
-            // console.log(result)
-
-            // if(Result.status = 'SUCCESS') {
-            //     toast({
-            //         title: "Success",
-            //         description: "Your startup has been submitted successfully",
+            if(result.status = 'SUCCESS') {
+                toast({
+                    title: "Success",
+                    description: "Your startup has been submitted successfully",
                     
-            //     })
+                })
 
-            //     router.push(`/startup/${result.id}`)
-            // }
+                router.push(`/startup/${result._id}`)
+            }
 
-            // return Result;
+            return result;
 
         } catch (error) {
             if(error instanceof z.ZodError) {

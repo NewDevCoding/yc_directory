@@ -12,7 +12,7 @@ const View = async ({ id }: { id: string }) => {
     .fetch(STARTUP_VIEWS_QUERY, { id });
 
   const formatViews = (views: any) => {
-          if(views == 1){
+          if(views == 1 || views == 0){
             return "1 View"
           } else {
             return `${views} Views`
