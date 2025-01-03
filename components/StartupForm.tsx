@@ -54,7 +54,7 @@ const StartupForm = () => {
         })
 
   return (
-    <form action={() => {}} className='startup-form'>
+    <form action={formAction} className='startup-form'>
         <div>
             <label htmlFor="title" className="startup-form_label">Title</label>
             <Input 
