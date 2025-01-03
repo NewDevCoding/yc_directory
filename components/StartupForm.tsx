@@ -7,6 +7,8 @@ import MDEditor from '@uiw/react-md-editor';
 import { Button } from './ui/button';
 import { Send } from 'lucide-react';
 import { formSchema } from '@/lib/validation';
+import * as z from 'zod';
+import { set } from 'sanity';
 
 const StartupForm = () => {
     
@@ -33,9 +35,15 @@ const StartupForm = () => {
             // console.log(result)
 
         } catch (error) {
-            
-        } finally {
+            if(error instanceof z.ZodError) {
+                const fieldErrors = error.flatten().fieldErrors;
 
+                setErrors(fieldErrors as unknown as Record<string, string>)
+            
+                return { ...prevState, error: "Validation Failed", status: "ERROR" }
+            }
+
+            return { ...prevState, error: "An error occurred", status: "ERROR" }
         }
     }
 
